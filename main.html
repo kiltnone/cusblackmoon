@@ -1,15 +1,41 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Redirecting...</title>
-    <script>
-      function openInBrowser() {
-        window.location = "https://form-shcjdh.flutterflow.app/";
-      }
-    </script>
-  </head>
-  <body>
-    <h2>Tap the button below to open in Safari:</h2>
-    <button onclick="openInBrowser()">Open App</button>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Open App</title>
+  <script>
+    const realAppUrl = "https://form-shcjdh.flutterflow.app/"; // Replace with your real URL
+
+    function openApp() {
+      window.location.href = realAppUrl;
+    }
+
+    // Optional auto-redirect after a delay
+    window.onload = function() {
+      setTimeout(openApp, 2000);
+    };
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 2rem;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Opening App...</h2>
+  <p>If it doesn't open automatically, tap the button below:</p>
+  <button onclick="openApp()">Open App</button>
+</body>
 </html>
