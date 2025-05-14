@@ -2,40 +2,53 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Open App</title>
-  <script>
-    const realAppUrl = "https://form-shcjdh.flutterflow.app/"; // Replace with your real URL
-
-    function openApp() {
-      window.location.href = realAppUrl;
-    }
-
-    // Optional auto-redirect after a delay
-    window.onload = function() {
-      setTimeout(openApp, 2000);
-    };
-  </script>
+  <title>Open in Safari</title>
   <style>
     body {
       font-family: sans-serif;
       text-align: center;
       padding: 2rem;
     }
-    button {
+    .warning {
+      display: none;
+      color: #d00;
       font-size: 1.2rem;
-      padding: 1rem 2rem;
-      border: none;
-      border-radius: 8px;
-      background-color: #007BFF;
-      color: white;
-      cursor: pointer;
+      margin-top: 2rem;
+    }
+    button {
+      font-size: 1rem;
+      padding: 10px 20px;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-  <h2>Opening App...</h2>
-  <p>If it doesn't open automatically, tap the button below:</p>
-  <button onclick="openApp()">Open App</button>
+  <h1>Welcome!</h1>
+  <p>If you're not automatically redirected, click the button:</p>
+  <button onclick="window.location.href='https://yourflutterflowapp.web.app'">Open App</button>
+
+  <div id="svc-warning" class="warning">
+    🚨 Looks like you're in a preview mode (Safari View Controller)<br>
+    Tap the <strong>Safari icon</strong> or <strong>Share > Open in Safari</strong> to continue properly.
+  </div>
+
+  <script>
+    const realAppUrl = "https://form-shcjdh.flutterflow.app/";
+
+    function isLikelySafariViewController() {
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+      const hasNoReferrer = document.referrer === "";
+      const hasNoOpener = !window.opener;
+      return isIOS && hasNoReferrer && hasNoOpener;
+    }
+
+    window.onload = function () {
+      if (isLikelySafariViewController()) {
+        document.getElementById("svc-warning").style.display = "block";
+      } else {
+        window.location.href = realAppUrl;
+      }
+    };
+  </script>
 </body>
 </html>
